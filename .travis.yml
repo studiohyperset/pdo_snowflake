@@ -112,8 +112,13 @@ matrix:
     env:
     - SNOWFLAKE_CLOUD_ENV=AWS
     before_install:
+    - sw_vers
+    - brew update
+    - brew install jq
     - openssl aes-256-cbc -k "$super_duper_secret_password" -in parameters_az.json.enc
       -out parameters.json -d
+    - python3 -m venv env
+    - source env/bin/activate
     script:
     - "./scripts/build_run_osx.sh"
 env:

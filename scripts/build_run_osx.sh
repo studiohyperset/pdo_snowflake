@@ -31,6 +31,10 @@ function finish {
     travis_fold_end
 }
 
+travis_fold_start pythonvenv "Set up Python Virtualenv (pyenv)"
+pip install -U snowflake-connector-python
+travis_fold_end
+
 # clean up
 trap finish EXIT
 
@@ -41,7 +45,6 @@ if [[ -z "$TRAVIS_JOB_ID" ]]; then
     cp $CONFIG_FILE parameters.json  # replicate a parameter file
 fi
 export BASE_DIR=$(pwd)
-echo $BASE_DIR
 
 # set the test parameters
 source ./scripts/env.sh
