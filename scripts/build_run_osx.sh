@@ -7,7 +7,7 @@ set -o pipefail
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CONFIG_FILE=$1
-CONFIG_FILE=${CONFIG_FILE:-/cfg/parameters.json}
+CONFIG_FILE=${CONFIG_FILE:-$DIR/parameters.json}
 [[ ! -f "$CONFIG_FILE" ]] && echo "The test connection parameter file is missing: $CONFIG_FILE" && exit 1
 
 function travis_fold_start() {
