@@ -114,11 +114,8 @@ matrix:
     before_install:
     - sw_vers
     - brew update
-    - brew tap homebrew/dupes
-    - brew tap homebrew/versions
-    - brew tap homebrew/homebrew-php
-    - brew unlink php70
-    - brew install php71
+    - brew unlink php
+    - brew install php@7.1
     - brew install jq
     - openssl aes-256-cbc -k "$super_duper_secret_password" -in parameters_az.json.enc
       -out parameters.json -d
