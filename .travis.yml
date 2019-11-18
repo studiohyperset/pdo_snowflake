@@ -109,6 +109,8 @@ matrix:
     sudo: required
     services:
     - docker
+    env:
+    - SNOWFLAKE_CLOUD_ENV=AWS
     before_install:
     - openssl aes-256-cbc -k "$super_duper_secret_password" -in parameters_az.json.enc
       -out parameters.json -d
