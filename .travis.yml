@@ -114,7 +114,6 @@ matrix:
     before_install:
     - sw_vers
     - brew update
-    - brew unlink php
     - brew install php@7.1
     - brew install jq
     - openssl aes-256-cbc -k "$super_duper_secret_password" -in parameters_az.json.enc
