@@ -5,6 +5,7 @@
 set -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $DIR
 
 CONFIG_FILE=$1
 CONFIG_FILE=${CONFIG_FILE:-$DIR/../parameters.json}
@@ -35,6 +36,7 @@ function finish {
 trap finish EXIT
 
 if [[ -z "$TRAVIS_JOB_ID" ]]; then
+    echo "Downloading source"
     cd
     git clone --depth=50 --branch=master https://github.com/snowflakedb/pdo_snowflake.git
     cd pdo_snowflake
