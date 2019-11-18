@@ -5,7 +5,6 @@
 set -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $DIR
 
 CONFIG_FILE=$1
 CONFIG_FILE=${CONFIG_FILE:-$DIR/../parameters.json}
@@ -36,19 +35,16 @@ function finish {
 trap finish EXIT
 
 if [[ -z "$TRAVIS_JOB_ID" ]]; then
-    echo "Downloading source"
     cd
     git clone --depth=50 --branch=master https://github.com/snowflakedb/pdo_snowflake.git
     cd pdo_snowflake
     cp $CONFIG_FILE parameters.json  # replicate a parameter file
-else
-    cd ..
 fi
 export BASE_DIR=$(pwd)
 echo $BASE_DIR
 
 # set the test parameters
-source $BASE_DIR/scripts/env.sh
+source ./scripts/env.sh
 
 # Check Ubuntu version
 # Ubuntu 16 and 18 has gcc5/gcov5 but doesn't work along with lcov12 and lcov13
@@ -58,7 +54,7 @@ source $BASE_DIR/scripts/env.sh
 # fi
 
 travis_fold_start create_schema "Create test schema"
-python3 $DIR/scripts/create_schema.py
+python3 ./scripts/create_schema.py
 if [[ -n "$TRAVIS_JOB_ID" ]]; then
     echo "==> Set the test schema to TRAVIS_JOB_${TRAVIS_JOB_ID}"
     export SNOWFLAKE_TEST_SCHEMA=TRAVIS_JOB_${TRAVIS_JOB_ID}
