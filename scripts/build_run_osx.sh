@@ -64,6 +64,8 @@ if [[ -n "$TRAVIS_JOB_ID" ]]; then
 fi
 travis_fold_end
 
+export PHP_HOME=$(which php)
+
 travis_fold_start build_pdo_snowflake "Builds PHP PDO"
 echo "PHP_HOME:   $PHP_HOME"
 echo "phpize:     $(which phpize)"
