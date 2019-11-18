@@ -40,7 +40,7 @@ if [[ -z "$TRAVIS_JOB_ID" ]]; then
     cd pdo_snowflake
     cp $CONFIG_FILE parameters.json  # replicate a parameter file
 else
-    cd /base
+    cd ..
 fi
 export BASE_DIR=$(pwd)
 
