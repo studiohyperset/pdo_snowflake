@@ -113,10 +113,11 @@ matrix:
     - SNOWFLAKE_CLOUD_ENV=AWS
     before_install:
     - sw_vers
-    - xcode-select --install
     - brew update
     - brew install php@7.1
     - brew install jq
+    - brew install zlib
+    - brew install zlib-devel
     - openssl aes-256-cbc -k "$super_duper_secret_password" -in parameters_az.json.enc
       -out parameters.json -d
     - python3 -m venv env
