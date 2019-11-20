@@ -114,7 +114,6 @@ matrix:
     before_install:
     - sw_vers
     - brew update
-    - brew install php@7.1
     - brew install jq
     - brew install zlib
     - brew install zlib-devel
