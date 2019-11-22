@@ -68,12 +68,13 @@ if [[ -n "$TRAVIS_JOB_ID" ]]; then
 fi
 travis_fold_end
 
-export PHP_HOME=$(which php)
+export PHP_VERSION=7.2.24
+export PHP_HOME=$BASE_DIR/php/install-php-$PHP_VERSION
 
 travis_fold_start build_pdo_snowflake "Builds PHP PDO"
 echo "PHP_HOME:   $PHP_HOME"
-echo "phpize:     $(which phpize)"
-echo "php-config: $(which php-config)"
+echo "phpize:     $(which $PHP_HOME/bin/phpize)"
+echo "php-config: $(which $PHP_HOME/bin/php-config)"
 ./scripts/build_pdo_snowflake.sh
 travis_fold_end
 
