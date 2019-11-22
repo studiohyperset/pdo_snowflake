@@ -49,6 +49,10 @@ export BASE_DIR=$(pwd)
 # set the test parameters
 source ./scripts/env.sh
 
+# build, download and install PHP
+export WORKSPACE=$BASE_DIR/php
+source ./scripts/download_and_build_php.sh
+
 # Check Ubuntu version
 # Ubuntu 16 and 18 has gcc5/gcov5 but doesn't work along with lcov12 and lcov13
 # UBUNTU_VERSION=$(lsb_release -r | awk '{print $2}')
