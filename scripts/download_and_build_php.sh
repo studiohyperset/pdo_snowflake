@@ -18,14 +18,15 @@ echo "Downloading, building and installing PHP in ${WORKSPACE}"
 cd $WORKSPACE
 curl $PHP_DISTRIBUTIONS_URL/$PHP_TARBALL --output $PHP_TARBALL
 
-tar -xvf $PHP_TARBALL
+tar -xf $PHP_TARBALL
 cd $PHP_VERSION
 
 ./configure \
-    --prefix=$WORKSPACE/install-php-$PHP_VERSION \
+    --prefix=$WORKSPACE/install-$PHP_VERSION \
     --disable-all \
     --enable-pdo \
-    --enable-cli
+    --enable-cli \
+    --enable-json
 make
 make install
 

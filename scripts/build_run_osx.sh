@@ -51,6 +51,8 @@ source ./scripts/env.sh
 
 # build, download and install PHP
 export WORKSPACE=$BASE_DIR/php
+export PHP_VERSION=php-7.2.24
+export PHP_HOME=$WORKSPACE/install-$PHP_VERSION
 source ./scripts/download_and_build_php.sh
 
 # Check Ubuntu version
@@ -68,9 +70,6 @@ if [[ -n "$TRAVIS_JOB_ID" ]]; then
 fi
 travis_fold_end
 
-export PHP_VERSION=7.2.24
-export PHP_HOME=$BASE_DIR/php/install-php-$PHP_VERSION
-
 travis_fold_start build_pdo_snowflake "Builds PHP PDO"
 echo "PHP_HOME:   $PHP_HOME"
 echo "phpize:     $(which $PHP_HOME/bin/phpize)"
@@ -80,9 +79,9 @@ travis_fold_end
 
 travis_fold_start phptests "Tests PHP PDO"
 # Update tests with parameters
-PHP_API_VER=$(php -i | grep "PHP API" | awk '{print $4}')
-PHP_EXT=$(find /usr/lib/php -name "pdo.so" | grep $PHP_API_VER) && for f in $(ls tests/*.phpt); do sed -i "/--INI--/a extension=$PHP_EXT" $f; done
-PHP_EXT=$(find /usr/lib/php -name "json.so" | grep $PHP_API_VER) && for f in $(ls tests/*.phpt); do sed -i "/--INI--/a extension=$PHP_EXT" $f; done
+PHP_API_VER=$($PHP_HOME/bin/php -i | grep "PHP API" | awk '{print $4}')
+PHP_EXT=$(find $PHP_HOME/bin/php -name "pdo.so" | grep $PHP_API_VER) && for f in $(ls tests/*.phpt); do sed -i "/--INI--/a extension=$PHP_EXT" $f; done
+PHP_EXT=$(find $PHP_HOME/bin/php -name "json.so" | grep $PHP_API_VER) && for f in $(ls tests/*.phpt); do sed -i "/--INI--/a extension=$PHP_EXT" $f; done
 
 # Testing
 ./scripts/run_tests.sh
