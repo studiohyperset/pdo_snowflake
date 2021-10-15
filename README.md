@@ -14,4 +14,5 @@ This repo is mainly used by [Confection Heroku PHP Buildpack](https://github.com
 3. Rewrite your master with latest tag version
     `git merge upstream/main`
 4. Sync changes to retrieve the new data. Remove any binarie from repo.
-5. Commit and push to main
+5. Remove `.github` to avoid tests
+6. Commit and push to main
