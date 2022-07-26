@@ -7,14 +7,8 @@ This repo is mainly used by [Confection Heroku PHP Buildpack](https://github.com
 
 ## Update process
 
-1. Add the original repo as "upstream":
-    `git remote add upstream https://github.com/snowflakedb/pdo_snowflake.git`
-2. Fetch all branches of remote upstream
-    `git fetch upstream`
-3. Squash master from upstream into current one
-    `git reset --soft upstream/main`
-    `git commit -m "new version"`
-    `git push -f`
-4. Sync changes to retrieve the new data. Remove any binarie from repo.
+1. Delete everything from this repo, except this file and .git folder
+2. Download the new repo into this folder
+3. Remove binaries from folders `dist` and `libsnowflakeclient/deeps-build` 
 5. Remove `.github` to avoid tests
 6. Commit and push to main

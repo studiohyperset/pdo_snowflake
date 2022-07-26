@@ -46,7 +46,7 @@ if [[ -n "$REPORT_COVERAGE" ]]; then
 fi
 if [[ "$PLATFORM" == "linux" ]]; then
     echo "Linking for Linux"
-    cc -shared \
+    g++ -shared \
         -fPIC \
         -DPIC \
         .libs/pdo_snowflake.o \
@@ -91,6 +91,11 @@ elif [[ "$PLATFORM" == "darwin" ]]; then
         .libs/pdo_snowflake.o \
         .libs/snowflake_driver.o \
         .libs/snowflake_stmt.o \
+        -Wl,-force_load,libsnowflakeclient/deps-build/darwin/arrow/lib/libarrow.a \
+        -Wl,-force_load,libsnowflakeclient/deps-build/darwin/arrow_deps/lib/libjemalloc_pic.a \
+        libsnowflakeclient/deps-build/darwin/boost/lib/libboost_filesystem.a \
+        libsnowflakeclient/deps-build/darwin/boost/lib/libboost_regex.a \
+        libsnowflakeclient/deps-build/darwin/boost/lib/libboost_system.a \
         -Wl,-force_load,libsnowflakeclient/lib/darwin/libsnowflakeclient.a \
         -Wl,-force_load,libsnowflakeclient/deps-build/darwin/openssl/lib/libcrypto.a \
         -Wl,-force_load,libsnowflakeclient/deps-build/darwin/openssl/lib/libssl.a \
