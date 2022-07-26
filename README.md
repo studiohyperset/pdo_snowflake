@@ -9,6 +9,6 @@ This repo is mainly used by [Confection Heroku PHP Buildpack](https://github.com
 
 1. Delete everything from this repo, except this file and .git folder
 2. Download the new repo into this folder
-3. Remove binaries from folders `dist` and `libsnowflakeclient/deeps-build` 
+3. Remove the folders with binaries `dist`, `libsnowflakeclient/deeps-build/darwin` and `libsnowflakeclient/deeps-build/win64` 
 5. Remove `.github` to avoid tests
 6. Commit and push to main
